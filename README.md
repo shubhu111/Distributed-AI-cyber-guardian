@@ -24,3 +24,13 @@ The system is built on a decoupled, four-layer architecture for maximum scalabil
 - Intelligence Layer: A Flask backend runs the AI engine and manages automated alert logic.
 
 - Presentation Layer: A sharp, responsive dashboard built with Plotly.js for real-time forensic visualization.
+# 📂 Repository Breakdown
+## 🧠 AI & Machine Learning Artifacts
+
+- ```nids_random_forest.pkl```: The core trained model.
+
+- ``nids_scaler.pkl``: Normalizes live data to match the model’s training distribution.
+
+- ``nids_features.pkl``: Serialized list of required mathematical network features.
+
+- ``attack_classes.pkl`` / label_encoder.pkl: Mappings to translate AI predictions into human-readable threat labels (e.g., "DDoS", "Web Attack").
