@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +11,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: #0d1117; color: #c9d1d9; display: flex; height: 100vh; overflow: hidden; }
         
-        /* SIDEBAR - SOLID & CRISP */
-        #sidebar { width: 260px; background-color: #010409; border-right: 1px solid #30363d; padding: 25px 20px; display: flex; flex-direction: column; z-index: 10;}
+        /* SIDEBAR - SOLID & CRISP (Desktop) */
+        #sidebar { width: 260px; background-color: #010409; border-right: 1px solid #30363d; padding: 25px 20px; display: flex; flex-direction: column; z-index: 100; flex-shrink: 0;}
         #sidebar-title { font-weight: 700; font-size: 16px; color: #58a6ff; margin-bottom: 40px; letter-spacing: 0.5px; line-height: 1.4;}
         .sidebar-section { font-size: 11px; color: #8b949e; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; letter-spacing: 1px;}
-        .endpoint-link { color: #8b949e; padding: 10px 15px; border-radius: 6px; margin-bottom: 5px; cursor: pointer; transition: all 0.1s; font-size: 13px; font-weight: 500; border: 1px solid transparent;}
+        .endpoint-link { color: #8b949e; padding: 10px 15px; border-radius: 6px; margin-bottom: 5px; cursor: pointer; transition: all 0.1s; font-size: 13px; font-weight: 500; border: 1px solid transparent; white-space: nowrap;}
         .endpoint-link:hover { background-color: #161b22; color: #c9d1d9; border-color: #30363d;}
         .active-endpoint { background-color: #1f242c; color: #58a6ff; border-color: #30363d; font-weight: 600;}
         
-        /* MAIN AREA - SCROLLABLE & SPACED */
+        /* MAIN AREA */
         .panel-container { flex-grow: 1; padding: 30px 40px; overflow-y: auto; display: none; background-color: #0d1117; height: 100vh;}
         .active-panel { display: block !important; }
         
+        /* MOBILE TOP BAR (Hidden on Desktop) */
+        .mobile-header { display: none; background-color: #010409; border-bottom: 1px solid #30363d; padding: 15px; text-align: center; color: #58a6ff; font-weight: 700; font-size: 13px; position: sticky; top: 0; z-index: 99; letter-spacing: 0.5px;}
+
         /* HEADERS */
         .main-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; border-bottom: 1px solid #30363d; padding-bottom: 15px;}
         .main-header h2 { font-size: 22px; font-weight: 600; color: #f0f6fc;}
@@ -65,8 +67,8 @@
         .data-panel { background-color: #161b22; border-radius: 6px; border: 1px solid #30363d; overflow: hidden; margin-bottom: 30px; min-height: 350px; display: flex; flex-direction: column;}
         .data-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #30363d; background-color: #1f242c;}
         .data-title { color: #f0f6fc; font-weight: 600; font-size: 14px;}
-        .table-wrapper { overflow-y: auto; flex-grow: 1; }
-        .soc-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .table-wrapper { overflow-x: auto; flex-grow: 1; }
+        .soc-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px;}
         .soc-table th, .soc-table td { padding: 12px 20px; border-bottom: 1px solid #30363d; font-size: 13px;}
         .soc-table th { color: #8b949e; font-weight: 600; position: sticky; top: 0; background-color: #161b22;}
         .soc-table td { font-family: 'JetBrains Mono', monospace; }
@@ -87,17 +89,71 @@
         .btn-primary:hover { background-color: #2ea043; }
         .btn-outline { background-color: #21262d; border: 1px solid #30363d; color: #c9d1d9; width: 100%; margin-top: 10px;}
         .btn-outline:hover { background-color: #30363d; }
+
+        /* ========================================================= */
+        /* 🔥 MOBILE PORTFOLIO-STYLE OVERRIDES - NO LOGIC CHANGES 🔥  */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow: auto; height: auto; }
+            
+            /* TOP TITLE BAR FOR MOBILE */
+            .mobile-header { display: block; }
+
+            /* SIDEBAR BECOMES APP-LIKE BOTTOM NAV */
+            #sidebar { 
+                width: 100%; 
+                height: 70px; 
+                flex-direction: row; 
+                justify-content: space-around; 
+                align-items: center; 
+                padding: 0 10px; 
+                border-right: none; 
+                border-top: 1px solid #30363d; 
+                position: fixed; 
+                bottom: 0; 
+                left: 0; 
+                background: #010409; 
+                z-index: 1000; 
+            }
+            
+            #sidebar-title, .sidebar-section { display: none; } /* Hide labels for space */
+            
+            .endpoint-link { 
+                margin-bottom: 0; 
+                padding: 10px 5px; 
+                font-size: 10px; 
+                text-align: center; 
+                flex: 1;
+                border-radius: 0;
+            }
+            .active-endpoint { background-color: transparent; color: #58a6ff; border-top: 2px solid #58a6ff; border-left: none; }
+
+            /* MAIN CONTENT ADJUSTMENTS */
+            .panel-container { 
+                padding: 20px 15px 100px 15px; /* Bottom padding to clear nav bar */
+                height: auto; 
+                overflow: visible; 
+            }
+            
+            #kpi-ribbon { grid-template-columns: 1fr 1fr; gap: 10px; }
+            #chart-grid, #card-grid, .settings-grid { grid-template-columns: 1fr; gap: 15px; }
+            .kpi-value { font-size: 24px; }
+            .main-header h2 { font-size: 18px; }
+            .telemetry-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
+    <div class="mobile-header">ZERO-DAY MALWARE DETECTION SOC</div>
+
     <div id="sidebar">
         <div id="sidebar-title">Zero-Day Malware<br>Detection SOC</div>
         <div class="sidebar-section">Main Menu</div>
-        <div class="endpoint-link active-endpoint" id="nav-live" onclick="switchTab('live')">Live Dashboard</div>
-        <div class="endpoint-link" id="nav-history" onclick="switchTab('history')">Incident Forensics</div>
+        <div class="endpoint-link active-endpoint" id="nav-live" onclick="switchTab('live')">Live SOC</div>
+        <div class="endpoint-link" id="nav-history" onclick="switchTab('history')">Forensics</div>
         <div class="sidebar-section" style="margin-top: 25px;">Configuration</div>
-        <div class="endpoint-link" id="nav-alert" onclick="switchTab('alert')">Alerts & Notifications</div>
-        <div class="endpoint-link" id="nav-settings" onclick="switchTab('settings')">Platform Settings</div>
+        <div class="endpoint-link" id="nav-alert" onclick="switchTab('alert')">Alerts</div>
+        <div class="endpoint-link" id="nav-settings" onclick="switchTab('settings')">Settings</div>
     </div>
 
     <div id="view-live" class="panel-container active-panel">
@@ -110,7 +166,7 @@
             <div class="soc-kpi"><div class="kpi-title">Active Sensors</div><div class="kpi-value" id="kpi-devices">-</div></div>
             <div class="soc-kpi"><div class="kpi-title">Network Status</div><div class="kpi-value" id="kpi-threat">--</div></div>
             <div class="soc-kpi"><div class="kpi-title">Threats Neutralized</div><div class="kpi-value" id="kpi-deflected">-</div></div>
-            <div class="soc-kpi"><div class="kpi-title">System Uplink</div><div class="kpi-value secure">ACTIVE</div></div>
+            <div class="soc-kpi"><div class="kpi-title">System Uplink</div><div class="kpi-value secure" style="font-size:16px;">ACTIVE</div></div>
         </div>
         
         <div id="chart-grid">
@@ -139,7 +195,7 @@
         <div class="data-panel" style="flex-grow: 1;">
             <div class="data-header">
                 <div class="data-title">Raw Telemetry Archive</div>
-                <input type="text" id="history-search" placeholder="Search by Device ID or Signature..." onkeyup="filterHistory()">
+                <input type="text" id="history-search" placeholder="Search Device or Status..." onkeyup="filterHistory()" style="width: 100%;">
             </div>
             <div class="table-wrapper">
                 <table class="soc-table" id="history-table">
@@ -155,7 +211,7 @@
         <div class="settings-grid">
             <div class="settings-card">
                 <h3>Email Dispatch</h3>
-                <p>Configure automated SMTP alerts. The system will email administrators immediately when a high-confidence threat is detected.</p>
+                <p>Configure automated SMTP alerts.</p>
                 <div class="form-group"><label class="form-label">Master Override</label><select id="alert-toggle" class="form-input"><option value="true">Alerts Enabled</option><option value="false">Alerts Disabled</option></select></div>
                 <div class="form-group"><label class="form-label">Admin Email Address</label><input type="email" id="alert-email" class="form-input" placeholder="security@yourcompany.com"></div>
                 <button class="btn btn-primary" onclick="saveAlertConfig()">Update Settings</button>
@@ -163,7 +219,7 @@
             </div>
             <div class="settings-card">
                 <h3>Webhook Integrations (Pro)</h3>
-                <p>Push critical alerts directly to your team's communication channels. Requires a premium license.</p>
+                <p>Requires a premium license.</p>
                 <div class="form-group"><label class="form-label">Slack Webhook URL</label><input type="text" class="form-input" disabled value="https://hooks.slack.com/services/XXXX"></div>
                 <button class="btn btn-outline" disabled style="opacity:0.5;">Upgrade to Pro</button>
             </div>
@@ -175,20 +231,18 @@
         <div class="settings-grid">
             <div class="settings-card">
                 <h3>Workspace Profile</h3>
-                <p>Manage your organizational details and dashboard appearance.</p>
                 <div class="form-group"><label class="form-label">Lead Analyst Name</label><input type="text" id="set-admin-name" class="form-input"></div>
                 <div class="form-group"><label class="form-label">Organization Name</label><input type="text" id="set-org-name" class="form-input"></div>
                 <button class="btn btn-primary" onclick="saveSystemSettings()">Save Profile</button>
             </div>
             <div class="settings-card">
                 <h3>Security & Compliance</h3>
-                <p>Manage data retention policies and API access keys.</p>
                 <div class="form-group">
                     <label class="form-label">Log Retention Policy</label>
                     <select class="form-input" id="set-retention">
-                        <option value="30">Auto-Delete after 30 Days</option>
-                        <option value="60">Auto-Delete after 60 Days</option>
-                        <option value="90">Auto-Delete after 90 Days</option>
+                        <option value="30">30 Days</option>
+                        <option value="60">60 Days</option>
+                        <option value="90">90 Days</option>
                     </select>
                 </div>
                 <button class="btn btn-primary" onclick="saveSystemSettings()">Update Policies</button>
@@ -212,6 +266,7 @@
             else if (tabName === 'history') { fetchHistoryData(); }
             else if (tabName === 'alert') { loadAlertConfig(); }
             else if (tabName === 'settings') { loadSystemSettings(); }
+            window.scrollTo(0, 0);
         }
 
         function humanizeStatus(status) {
@@ -273,7 +328,7 @@
                 const volPlotTraces = data.charts.volume_traces.map(trace => ({ name: trace.name, x: times, y: trace.data, type: 'scatter', mode: 'lines', fill: 'tozeroy', fillcolor: `rgba(88, 166, 255, 0.1)`, line: { color: "#58a6ff", width: 2, shape: 'spline' } }));
                 const confPlotTraces = data.charts.confidence_traces.map(trace => ({ name: trace.name, x: times, y: trace.data, type: 'scatter', mode: 'lines', line: { color: data.global.threat_level.includes("SECURE") ? "#238636" : "#da3633", width: 2, shape: 'spline' } }));
 
-                const chartLayout = { height: 210, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', margin: { l: 0, r: 0, t: 5, b: 0 }, xaxis: { showgrid: false, zeroline: false, tickfont: {color: '#8b949e', family: 'JetBrains Mono'} }, yaxis: { gridcolor: '#30363d', zeroline: false, tickfont: {color: '#8b949e', family: 'JetBrains Mono'} }, showlegend: false };
+                const chartLayout = { height: 210, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', margin: { l: 30, r: 10, t: 5, b: 30 }, autosize: true, xaxis: { showgrid: false, zeroline: false, tickfont: {color: '#8b949e', size: 10} }, yaxis: { gridcolor: '#30363d', zeroline: false, tickfont: {color: '#8b949e', size: 10} }, showlegend: false };
                 Plotly.newPlot(volChart, volPlotTraces, chartLayout, { displayModeBar: false, responsive: true });
                 Plotly.newPlot(confChart, confPlotTraces, { ...chartLayout, yaxis: { ...chartLayout.yaxis, range: [0, 1.1] } }, { displayModeBar: false, responsive: true });
 
@@ -281,20 +336,19 @@
                 cardGrid.innerHTML = ''; 
                 data.devices.forEach(device => {
                     let hStatus = humanizeStatus(device.status);
-                    
                     let featureHTML = '<div class="telemetry-grid">';
                     let count = 0;
                     for (const [key, value] of Object.entries(device.features)) {
                         if(count >= 12) break; 
                         let valStr = typeof value === 'number' ? value.toFixed(1) : value;
-                        featureHTML += `<div class="tel-item"><span class="tel-key">${key.substring(0,10)}</span><span class="tel-val">${valStr}</span></div>`;
+                        featureHTML += `<div class="tel-item"><span class="tel-key">${key.substring(0,8)}</span><span class="tel-val">${valStr}</span></div>`;
                         count++;
                     }
                     featureHTML += '</div>';
 
                     cardGrid.innerHTML += `
                         <div class="soc-card">
-                            <div class="card-header"><span>${device.id}</span><span>CONF: ${device.confidence}</span></div>
+                            <div class="card-header"><span>${device.id}</span><span style="font-family:monospace;font-size:11px;">${device.confidence}</span></div>
                             <div class="status-block" style="border-color: ${device.is_attack ? '#da3633' : '#238636'}">
                                 <div class="${device.is_attack ? 'led-red' : 'led-green'}"></div>
                                 <strong class="status-text ${device.is_attack ? 'status-attack' : 'status-secure'}">${hStatus}</strong>
@@ -305,7 +359,7 @@
 
                 const ledgerBody = document.getElementById('ledger-body');
                 ledgerBody.innerHTML = '';
-                data.ledger.forEach(entry => { ledgerBody.innerHTML += `<tr class="${data.devices.some(d => d.id === entry["Affected Devices"] && d.is_attack) ? 'attack-row' : ''}"><td>${entry.Timestamp}</td><td style="font-family: 'Inter', sans-serif;">${entry["Event Type"]}</td><td>${entry["Affected Devices"]}</td></tr>`; });
+                data.ledger.forEach(entry => { ledgerBody.innerHTML += `<tr class="${data.devices.some(d => d.id === entry["Affected Devices"] && d.is_attack) ? 'attack-row' : ''}"><td>${entry.Timestamp.split(' ')[1]}</td><td>${entry["Event Type"]}</td><td>${entry["Affected Devices"]}</td></tr>`; });
             } catch (error) { console.error("SOC Live Error:", error); }
         }
 
@@ -315,18 +369,11 @@
                 const data = await response.json();
                 const historyBody = document.getElementById('history-body');
                 historyBody.innerHTML = '';
-                
-                if (data.error) {
-                    historyBody.innerHTML = `<tr><td colspan="6" style="color:#da3633; text-align:center;">Error loading database: ${data.error}</td></tr>`;
-                    return;
-                }
-
+                if (data.error) { historyBody.innerHTML = `<tr><td colspan="6" style="color:#da3633; text-align:center;">Error: ${data.error}</td></tr>`; return; }
                 data.forEach(row => { 
                     historyBody.innerHTML += `<tr class="${row.Status !== "Safe" ? 'attack-row' : ''}"><td>${row.Timestamp}</td><td>${row.Device}</td><td>${row.Port}</td><td>${row.Variance}</td><td>${row.Bytes_per_sec}</td><td style="font-weight:600;">${row.Status}</td></tr>`; 
                 });
-            } catch (error) {
-                document.getElementById('history-body').innerHTML = `<tr><td colspan="6" style="color:#da3633; text-align:center;">Failed to connect to backend server.</td></tr>`;
-            }
+            } catch (e) {}
         }
 
         function filterHistory() {
@@ -337,10 +384,7 @@
                 tr[i].style.display = text.toUpperCase().indexOf(filter) > -1 ? "" : "none";
             }
         }
-
-        // --- INSTANT BOOT-UP CALL ---
-        fetchSOCData(); 
-        switchTab('live');
+        fetchSOCData(); switchTab('live');
     </script>
 </body>
 </html>
