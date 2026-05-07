@@ -13,3 +13,14 @@ The detection engine utilizes a Random Forest Classifier (nids_random_forest.pkl
 - Feature Importance: The model specifically monitors 15+ critical network features, including Flow Bytes/s, Packet Length Variance, and RST Flag Counts, to distinguish between legitimate spikes and malicious floods.
 
 - Batched Inference: The backend utilizes ultra-optimized batched processing. It evaluates up to 60 telemetry packets in a single vector operation, ensuring the system remains responsive even during high-volume DDoS attacks.
+
+3. Distributed SOC Architecture
+The system is built on a decoupled, four-layer architecture for maximum scalability:
+
+- Sensor Layer: Local agent.py scripts capture raw socket data and parse it into numerical telemetry.
+
+- Persistence Layer: Telemetry is pushed to a Supabase (PostgreSQL) cloud cluster, acting as a centralized brain for multiple sensor nodes.
+
+- Intelligence Layer: A Flask backend runs the AI engine and manages automated alert logic.
+
+- Presentation Layer: A sharp, responsive dashboard built with Plotly.js for real-time forensic visualization.
