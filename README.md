@@ -8,8 +8,8 @@ Traditional security systems rely on signature matching (detecting known "finger
 2. Random Forest Intelligence :
 The detection engine utilizes a Random Forest Classifier (nids_random_forest.pkl).
 
-Ensemble Learning: Instead of a single decision path, the model utilizes an ensemble of hundreds of decision trees to "vote" on traffic classification, which drastically reduces false positives.
+- Ensemble Learning: Instead of a single decision path, the model utilizes an ensemble of hundreds of decision trees to "vote" on traffic classification, which drastically reduces false positives.
 
-Feature Importance: The model specifically monitors 15+ critical network features, including Flow Bytes/s, Packet Length Variance, and RST Flag Counts, to distinguish between legitimate spikes and malicious floods.
+- Feature Importance: The model specifically monitors 15+ critical network features, including Flow Bytes/s, Packet Length Variance, and RST Flag Counts, to distinguish between legitimate spikes and malicious floods.
 
-Batched Inference: The backend utilizes ultra-optimized batched processing. It evaluates up to 60 telemetry packets in a single vector operation, ensuring the system remains responsive even during high-volume DDoS attacks.
+- Batched Inference: The backend utilizes ultra-optimized batched processing. It evaluates up to 60 telemetry packets in a single vector operation, ensuring the system remains responsive even during high-volume DDoS attacks.
