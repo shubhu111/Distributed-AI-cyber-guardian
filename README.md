@@ -5,7 +5,7 @@ A high-performance, distributed Network Intrusion Detection System (NIDS) and Se
 - Zero-Day Anomaly Detection :
 Traditional security systems rely on signature matching (detecting known "fingerprints" of malware). This system employs Anomaly-Based Detection. By establishing a mathematical baseline of "Safe Traffic," the AI can identify novel exploits the moment they deviate from normal behavior, effectively stopping "Zero-Day" attacks before they are documented by security vendors.
 
--Random Forest Intelligence :
+- Random Forest Intelligence :
 The detection engine utilizes a Random Forest Classifier (nids_random_forest.pkl).
 
 Ensemble Learning: Instead of a single decision path, the model utilizes an ensemble of hundreds of decision trees to "vote" on traffic classification, which drastically reduces false positives.
