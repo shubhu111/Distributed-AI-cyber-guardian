@@ -6,3 +6,4 @@ supabase
 scikit-learn
 scapy
 gunicorn
+Flask
