@@ -3,7 +3,7 @@ pandas
 numpy
 joblib
 supabase
-scikit-learn
+scikit-learn==1.6.1
 scapy
 gunicorn
 Flask
