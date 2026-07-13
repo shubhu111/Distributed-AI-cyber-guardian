@@ -5,3 +5,4 @@ joblib
 supabase
 scikit-learn
 scapy
+gunicorn
