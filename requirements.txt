@@ -7,3 +7,4 @@ scikit-learn
 scapy
 gunicorn
 Flask
+python-dotenv
