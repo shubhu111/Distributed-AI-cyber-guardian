@@ -1,3 +1,5 @@
+# python attack_simulator.py -> to run this script
+
 import socket
 import time
 import random

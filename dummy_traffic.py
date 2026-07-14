@@ -1,3 +1,5 @@
+# python dummy_traffic.py -> to run this script
+
 import urllib.request
 import time
 import threading

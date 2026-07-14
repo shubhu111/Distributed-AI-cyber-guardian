@@ -1,3 +1,5 @@
+# python agent.py  -> to run this script
+
 import time
 import logging
 import socket
@@ -6,12 +8,15 @@ import numpy as np
 import customtkinter as ctk
 from scapy.all import sniff, IP, TCP, UDP, conf
 from supabase import create_client
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Suppress runtime warnings
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
-SUPABASE_URL = "YOUR_SUPABASE_URL_HERE" #we already implement our key's inside our app
-SUPABASE_KEY = "YOUR_SUPABASE_KEY_HERE"
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # DYNAMIC DEVICE ID FIX
 DEVICE_ID = socket.gethostname() 
