@@ -7,4 +7,8 @@ scikit-learn==1.6.1
 scapy
 gunicorn
 Flask
+<<<<<<< HEAD
 python-dotenv
+=======
+python-dotenv
+>>>>>>> b0f0b5473a1d799b1900cbef199dd274eed33253

@@ -2,4 +2,8 @@
 __pycache__/
 dist/
 build/
+<<<<<<< HEAD
 *.specgi
+=======
+*.spec
+>>>>>>> b0f0b5473a1d799b1900cbef199dd274eed33253
